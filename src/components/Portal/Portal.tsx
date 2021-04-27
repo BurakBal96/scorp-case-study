@@ -1,6 +1,5 @@
 import React, {useState, CSSProperties, useEffect, useCallback} from 'react'
 import ReactDOM from 'react-dom'
-import {bool} from 'yup'
 
 interface Style {
   [key: string]: string | number
