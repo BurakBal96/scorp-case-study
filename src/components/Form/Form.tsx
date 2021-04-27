@@ -64,7 +64,7 @@ export const Form = ({
         }
         className={className}
         // @ts-ignore
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={e => e.preventDefault()}
         onChange={handleFormChange}>
         {children}
       </form>

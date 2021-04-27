@@ -1,5 +1,6 @@
 import React from 'react'
-import {Button, UserButton} from 'components'
+import {Button, UserButton, LoginModal} from 'components'
+
 
 export const Navigation = () => {
   // const handleNavigate = () => null
@@ -10,7 +11,7 @@ export const Navigation = () => {
 
   return (
     <div className="navigation">
-      <Button className="primary-btn light">Login</Button>
+      <LoginModal />
       <div className="horizon">
         <Button className="basic-btn mr-4" onClick={handleLanguage('tr-tr')}>
           TR

@@ -19,3 +19,4 @@ export {Portal} from './Portal/Portal'
 
 
 export {UserButton} from "./UserButton/UserButton"
+export {LoginModal} from "./LoginModal/LoginModal"
