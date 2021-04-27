@@ -1,0 +1,51 @@
+import React from 'react'
+import {DatePicker as AntdDatePicker} from 'antd'
+import useDeepCompareEffect from 'use-deep-compare-effect'
+import moment from 'moment'
+import {FormOptions, FormInterface} from 'utils/helpers'
+
+interface Props {
+  containerClassName?: string
+  label?: string
+  name: string
+  form?: FormInterface
+  onChange?: Function
+}
+
+export const DatePicker = ({
+  containerClassName = '',
+  label,
+  name = '',
+  form = {},
+  onChange = () => null,
+  ...props
+}: Props) => {
+  const {
+    register = () => null,
+    errors = {},
+    setValue = () => null,
+    ...restOfForm
+  } = form
+
+  const handleChange = (_moment: moment.Moment|null, _date: string) => {
+    // date will be null when clear button clicked
+    const date = _date ? moment(_date).toISOString() : ''
+
+    setValue(name, date, FormOptions)
+    onChange(date)
+  }
+
+  useDeepCompareEffect(() => {
+    register(name, {...restOfForm})
+  }, [register, name, restOfForm])
+
+  return (
+    <div className={'date-picker-container ' + containerClassName}>
+      <label className="vertical">
+        {label && <span className="label">{label}</span>}
+        <AntdDatePicker {...props} name={name} onChange={handleChange} />
+        {errors[name] && <span className="error">{errors[name].message}</span>}
+      </label>
+    </div>
+  )
+}
