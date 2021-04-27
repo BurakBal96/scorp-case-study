@@ -43,11 +43,11 @@ export const ContactUs = observer(() => {
 
   return (
     <div className="per-100 vertical center mt-30 mb-30">
-      <div className="per-30 vertical">
-        <h3>{t('Hello {{userName}},', {userName: userName || ''})}</h3>
-
+      <h3>{t('Hello {{userName}},', {userName: userName || ''})}</h3>
+      <div className="contact-us-form">
+        <div />
         <Form
-          className="contact-us-form"
+          className="per-100"
           schema={schema}
           onSubmit={doNothing}
           defaultValues={{
@@ -71,8 +71,11 @@ export const ContactUs = observer(() => {
             options={countryList}
           />
           <Input name="text" label={t('Your Message')} rows={4} />
-          <Submit className="mt-10">{t('Send')}</Submit>
+          <div className="per-100 horizon center">
+            <Submit className="mt-10">{t('Send')}</Submit>
+          </div>
         </Form>
+        <div />
       </div>
     </div>
   )
