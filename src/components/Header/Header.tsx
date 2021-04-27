@@ -7,6 +7,7 @@ import {Button} from 'components'
 import {useNavigate} from 'react-router-dom'
 
 export const Header = observer(() => {
+
   const {UIStore} = useStores()
   const navigate = useNavigate()
   const handleHome = () => navigate('/')

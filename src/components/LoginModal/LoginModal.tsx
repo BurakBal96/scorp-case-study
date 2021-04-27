@@ -3,17 +3,22 @@ import {Modal, Button, Form, Input, Submit} from 'components'
 import {useStores} from 'utils/stores'
 import * as Yup from 'yup'
 import {observer} from 'mobx-react'
+import {useTranslation} from 'react-i18next'
 
 export const LoginModal = observer(() => {
+  const {t} = useTranslation()
+
   const schema = Yup.object().shape({
-    name: Yup.string().required('Required'),
-    email: Yup.string().required('Required').email('Must be a valid email'),
+    name: Yup.string().required(t('Required')),
+    email: Yup.string()
+      .required(t('Required'))
+      .email(t('Must be a valid email')),
     password: Yup.string()
-      .required('Required')
-      .matches(/[A-Z]+/, 'Must include at least one uppercase character')
-      .matches(/[a-z]+/, 'Must include at least one lowercase character')
-      .matches(/[0-9]+/, 'Must contain a number')
-      .min(8, 'Too short - should be 8 chars minimum'),
+      .required(t('Required'))
+      .matches(/[A-Z]+/, t('Must include at least one uppercase character'))
+      .matches(/[a-z]+/, t('Must include at least one lowercase character'))
+      .matches(/[0-9]+/, t('Must contain a number'))
+      .min(8, t('Too short - should be 8 chars minimum')),
   })
 
   const {UserStore} = useStores()
@@ -27,14 +32,18 @@ export const LoginModal = observer(() => {
 
   return (
     <>
-      <Button onClick={toggleModal}>Login</Button>
+      <Button onClick={toggleModal}>{t('Login')}</Button>
       {open && (
-        <Modal title="Login" onClose={toggleModal}>
+        <Modal title={t('Login')} onClose={toggleModal}>
           <Form schema={schema} onSubmit={handleLogin}>
-            <Input name="name" label="Name" />
-            <Input name="email" label="Email" placeholder="example@mail.com" />
-            <Input name="password" label="password" type="password" />
-            <Submit className="mt-10">Login</Submit>
+            <Input name="name" label={t('Name')} />
+            <Input
+              name="email"
+              label={t('Email')}
+              placeholder="example@mail.com"
+            />
+            <Input name="password" label={t('Password')} type="password" />
+            <Submit className="mt-10">{t('Login')}</Submit>
           </Form>
         </Modal>
       )}

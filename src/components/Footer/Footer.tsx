@@ -1,73 +1,76 @@
 import React from 'react'
-
-import {Link} from "react-router-dom";
-import {AiTwotoneFileMarkdown, FaGooglePlay, GrApple} from "react-icons/all"
+import {Link} from 'react-router-dom'
+import {AiTwotoneFileMarkdown, FaGooglePlay, GrApple} from 'react-icons/all'
+import {useTranslation} from 'react-i18next'
 
 export const Footer = () => {
-  return    <footer>
-    <div className="section">
-      <span className="title">Scorp App</span>
-      <Link to="/contact-us" className="text">
-        About Us
-      </Link>
-      <Link to="/contact-us" className="text">
-        Careers
-      </Link>
-      <Link to="/contact-us" className="text">
-        Newsroom
-      </Link>
-      <Link to="/contact-us" className="text">
-        Contact
-      </Link>
-    </div>
+  const { t } = useTranslation()
 
-    <div className="section">
-      <span className="title">HELP</span>
-      <Link to="/contact-us" className="text">
-        Support Hub
-      </Link>
-      <Link to="/contact-us" className="text">
-        Terms & Conditions
-      </Link>
-      <Link to="/contact-us" className="text">
-        Privacy & Cookies
-      </Link>
-      <Link to="/contact-us" className="text">
-        Returns & Refunds
-      </Link>
-    </div>
 
-    <div className="section">
-      <span className="title">Business</span>
-      <Link to="/contact-us" className="text">
-        Business Center
-      </Link>
-      <Link to="/contact-us" className="text">
-        Developer & Publisher
-      </Link>
-      <Link to="/contact-us" className="text">
-        Marketing Partnership
-      </Link>
-    </div>
-
-    <div className="section large horizon">
-      <AiTwotoneFileMarkdown className="brand-icon" />
-      <div className="vertical ml-15">
-        <span className="title">Install the app</span>
-        <span className="text">
-            -- Insert scorp motto here --
-          </span>
+  return (
+    <footer>
+      <div className="section">
+        <span className="title">{t("Scorp App")}</span>
+        <Link to="/contact-us" className="text">
+          {t("About Us")}
+        </Link>
+        <Link to="/contact-us" className="text">
+          {t("Careers")}
+        </Link>
+        <Link to="/contact-us" className="text">
+          {t("Newsroom")}
+        </Link>
+        <Link to="/contact-us" className="text">
+          {t("Contact")}
+        </Link>
       </div>
-    </div>
 
-    <div className="section small">
-      <FaGooglePlay className="store-icon" />
-      <span className="title fs-13">Get it on Google Play©</span>
-    </div>
+      <div className="section">
+        <span className="title">{t("HELP")}</span>
+        <Link to="/contact-us" className="text">
+          {t("Support Hub")}
+        </Link>
+        <Link to="/contact-us" className="text">
+          {t("Terms & Conditions")}
+        </Link>
+        <Link to="/contact-us" className="text">
+          {t("Privacy & Cookies")}
+        </Link>
+        <Link to="/contact-us" className="text">
+          {t("Returns & Refunds")}
+        </Link>
+      </div>
 
-    <div className="section small">
-      <GrApple className="store-icon" />
-      <span className="title fs-13">Download on the App Store®</span>
-    </div>
-  </footer>
+      <div className="section">
+        <span className="title">{t("Business")}</span>
+        <Link to="/contact-us" className="text">
+          {t("Business Center")}
+        </Link>
+        <Link to="/contact-us" className="text">
+          {t("Developer & Publisher")}
+        </Link>
+        <Link to="/contact-us" className="text">
+          {t("Marketing Partnership")}
+        </Link>
+      </div>
+
+      <div className="section large horizon">
+        <AiTwotoneFileMarkdown className="brand-icon" />
+        <div className="vertical ml-15">
+          <span className="title">{t("Install the app")}</span>
+          <span className="text">{t("--Insert scorp motto here --")}</span>
+        </div>
+      </div>
+
+      <div className="section small">
+        <FaGooglePlay className="store-icon" />
+        <span className="title fs-13">{t("Get it on Google Play©")}</span>
+      </div>
+
+      <div className="section small">
+        <GrApple className="store-icon" />
+        <span className="title fs-13">{t("Download on the App Store®")}</span>
+      </div>
+    </footer>
+  )
 }

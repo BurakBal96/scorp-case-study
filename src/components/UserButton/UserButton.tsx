@@ -3,9 +3,12 @@ import {Button, Portal} from 'components'
 import {BsPeopleCircle, AiFillCaretDown} from 'react-icons/all'
 import {useStores} from 'utils/stores'
 import {observer} from 'mobx-react'
-import {useOutsideAlerter} from '../../utils/helpers'
+import {useOutsideAlerter} from 'utils/helpers'
+import {useTranslation} from 'react-i18next'
 
 export const UserButton = observer(() => {
+  const {t} = useTranslation()
+
   const {UserStore} = useStores()
   const {logout, userName} = UserStore
   const ref = useRef(null)
@@ -32,10 +35,10 @@ export const UserButton = observer(() => {
             </div>
 
             <div className="item">
-              <Button>Settings</Button>
+              <Button>{t("Settings")}</Button>
             </div>
             <div className="item">
-              <Button onClick={logout}>Logout</Button>
+              <Button onClick={logout}>{t("Logout")}</Button>
             </div>
           </div>
         </Portal>
