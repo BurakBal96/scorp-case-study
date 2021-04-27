@@ -47,7 +47,7 @@ export const ContactUs = observer(() => {
       <div className="contact-us-form">
         <div />
         <Form
-          className="per-100"
+          className="per-100 grid"
           schema={schema}
           onSubmit={doNothing}
           defaultValues={{
