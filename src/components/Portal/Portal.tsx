@@ -1,5 +1,6 @@
 import React, {useState, CSSProperties, useEffect, useCallback} from 'react'
 import ReactDOM from 'react-dom'
+import {bool} from 'yup'
 
 interface Style {
   [key: string]: string | number
@@ -23,7 +24,8 @@ interface Props {
   hocRef?: any
   position?: string
   offset?: OffsetOptions
-  direction?: '' | 'reverse'
+  reverseDirection?: boolean
+  customWidth?: number
 }
 
 const getOffset = (offset: string, size: number): number => {
@@ -34,11 +36,12 @@ const getOffset = (offset: string, size: number): number => {
 }
 
 export const Portal = ({
-  direction = '',
+  reverseDirection = false,
   children,
   position = 'absolute',
   hocRef = null,
   offset = '',
+  customWidth = 0,
 }: Props) => {
   const {offsetHeight, offsetWidth} = (hocRef || {}).current || {}
 
@@ -56,7 +59,7 @@ export const Portal = ({
       x: hocRef.current.getBoundingClientRect().x || 0,
       y: hocRef.current.getBoundingClientRect().y || 0,
     })
-  },[hocRef])
+  }, [hocRef])
 
   useEffect(() => {
     if (container) container.addEventListener('scroll', scrollEvent, false)
@@ -66,12 +69,20 @@ export const Portal = ({
   }, [container, scrollEvent])
 
   const top = currentPosition.y + getOffset(offset[0], offsetHeight)
-  const left = currentPosition.x + getOffset(offset[1], offsetWidth)
+  const left =
+    currentPosition.x + getOffset(offset[1], offsetWidth) - customWidth
 
-  const style = {position, top, left, width: offsetWidth} as CSSProperties
+  const style = {
+    position,
+    top,
+    left,
+    width: customWidth || offsetWidth,
+  } as CSSProperties
 
   const child = (
-    <div className={direction} style={style}>
+    <div
+      className={`${reverseDirection ? 'vertical-reverse' : ''}`}
+      style={style}>
       {children}
     </div>
   )

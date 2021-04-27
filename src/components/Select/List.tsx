@@ -20,20 +20,23 @@ export const List = (props: any) => {
     setValue,
     propsOnChange,
     scrollHeight,
+    disableSearch,
   } = props
   const listRef = useRef(null)
   useOutsideAlerter(listRef, closeList)
 
   const child = (
     <div ref={listRef} role="list" className="select-list">
-      <div className="select-list-search-bar">
-        <Input
-          name=""
-          onChange={handleSearch}
-          className="per-100 no-border-radius"
-          placeholder="Search item"
-        />
-      </div>
+      {!disableSearch && (
+        <div className="select-list-search-bar">
+          <Input
+            name=""
+            onChange={handleSearch}
+            className="per-100 no-border-radius"
+            placeholder="Search item"
+          />
+        </div>
+      )}
 
       <div className="select-scroll-list">
         <VariableSizeList

@@ -1,0 +1,9 @@
+.options-popup {
+  border: 1px solid var(--primary-color);
+  width: 100%;
+  padding: 10px;
+
+  .item+.item{
+    margin-top: 5px;
+  }
+}

@@ -19,6 +19,8 @@ interface Props {
   placeholder?: string
   options?: Array<Option>
   onChange?: Function
+  disableSearch?: boolean
+  disableClear?: boolean
   multi?: boolean
   iconLocation?: string
   listHeight?: number
@@ -38,6 +40,8 @@ export const Select = ({
   multi = false,
   iconLocation = 'right',
   listHeight = 185,
+  disableSearch = propOptions.length < 5,
+  disableClear = false,
   ...props
 }: Props) => {
   const wrapperRef = useRef(null)
@@ -138,7 +142,7 @@ export const Select = ({
           </span>
         </div>
         <div className="horizon">
-          {(multi ? selectedValue.length : selectedValue) ? (
+          {!disableClear && (multi ? selectedValue.length : selectedValue) ? (
             <MdClose style={ICON_STYLE} onClick={handleClear} />
           ) : null}
           {iconLocation === 'right' && (open ? OPEN_ICON : CLOSE_ICON)}
@@ -158,7 +162,8 @@ export const Select = ({
           watch,
           propsOnChange,
           scrollHeight,
-          setValue
+          setValue,
+          disableSearch,
         }}
       />
 

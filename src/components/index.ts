@@ -16,3 +16,6 @@ export {Modal} from './Modal/Modal'
 export {Footer} from './Footer/Footer'
 export {Version} from './Version'
 export {Portal} from './Portal/Portal'
+
+
+export {UserButton} from "./UserButton/UserButton"
