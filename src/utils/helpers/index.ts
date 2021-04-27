@@ -5,9 +5,11 @@ export type {FormInterface, Option, Error} from './Interfaces'
 export const sleep = async (delay = 2000) =>
   await new Promise(r => setTimeout(r, delay))
 
-export const FormOptions = {
-  shouldValidate: true,
-  shouldDirty: true,
+export const getFormOptions = (isSubmitted: boolean) => {
+  return {
+    shouldValidate: isSubmitted,
+    shouldDirty: isSubmitted,
+  }
 }
 
 export const get = (

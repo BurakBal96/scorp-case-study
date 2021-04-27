@@ -1,14 +1,21 @@
 import React, {useRef, useState} from 'react'
 import {Button, Portal} from 'components'
 import {BsPeopleCircle, AiFillCaretDown} from 'react-icons/all'
+import {useStores} from 'utils/stores'
+import {observer} from 'mobx-react'
+import {useOutsideAlerter} from '../../utils/helpers'
 
-export const UserButton = () => {
+export const UserButton = observer(() => {
+  const {UserStore} = useStores()
+  const {logout} = UserStore
   const ref = useRef(null)
   const [open, setOpen] = useState(false)
 
   const toggleOpen = () => {
-    setOpen(!open)
+    setTimeout(() => setOpen(!open), 100)
   }
+
+  useOutsideAlerter(ref, toggleOpen)
 
   return (
     <>
@@ -28,11 +35,11 @@ export const UserButton = () => {
               <Button>Settings</Button>
             </div>
             <div className="item">
-              <Button>Logout</Button>
+              <Button onClick={logout}>Logout</Button>
             </div>
           </div>
         </Portal>
       )}
     </>
   )
-}
+})

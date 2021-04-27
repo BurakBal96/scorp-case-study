@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useMemo, useRef, useCallback} from 'react'
 
-import {FormInterface, get, Option, FormOptions} from 'utils/helpers'
+import {FormInterface, get, Option, getFormOptions} from 'utils/helpers'
 import {MdArrowDropDown, MdArrowDropUp, MdClose} from 'react-icons/all'
 import {Label, Error} from 'components'
 import {useFormContext} from 'react-hook-form'
@@ -71,7 +71,7 @@ export const Select = ({
 
   const {
     register,
-    formState: {errors = {}},
+    formState: {errors = {}, isSubmitted},
     setValue,
     watch = () => {},
   } = useFormContext()
@@ -96,7 +96,7 @@ export const Select = ({
   const handleClear = async (e: any) => {
     e.stopPropagation()
 
-    setValue(name, multi ? [] : '', FormOptions)
+    setValue(name, multi ? [] : '', getFormOptions(isSubmitted))
     propsOnChange(multi ? [] : '')
 
     // if (submitOnChange) onSubmit()
@@ -162,6 +162,7 @@ export const Select = ({
           watch,
           propsOnChange,
           scrollHeight,
+          isSubmitted,
           setValue,
           disableSearch,
         }}

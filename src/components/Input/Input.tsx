@@ -1,7 +1,7 @@
 import React, {FC, InputHTMLAttributes, useEffect} from 'react'
 import {useFormContext} from 'react-hook-form'
 import {Label, Error} from 'components'
-import {FormOptions} from "utils/helpers";
+import {getFormOptions} from 'utils/helpers'
 
 //todo auto focus
 
@@ -29,7 +29,7 @@ export const Input = ({
 }: Props & InputHTMLAttributes<HTMLInputElement>) => {
   const {
     register,
-    formState: {errors = {}},
+    formState: {errors = {}, isSubmitted},
     setValue,
   } = useFormContext()
 
@@ -39,7 +39,7 @@ export const Input = ({
 
   const handleChange = (e: any) => {
     const value = e?.target?.value
-    if (name) setValue(name, value, FormOptions)
+    if (name) setValue(name, value, getFormOptions(isSubmitted))
     if (propsOnChange) propsOnChange(value)
   }
 

@@ -1,9 +1,10 @@
 import React, {useState} from 'react'
 import {Modal, Button, Form, Input, Submit} from 'components'
-import {useStores} from '../../utils/stores'
+import {useStores} from 'utils/stores'
 import * as Yup from 'yup'
+import {observer} from 'mobx-react'
 
-export const LoginModal = () => {
+export const LoginModal = observer(() => {
   const schema = Yup.object().shape({
     name: Yup.string().required('Required'),
     email: Yup.string().required('Required').email('Must be a valid email'),
@@ -39,4 +40,4 @@ export const LoginModal = () => {
       )}
     </>
   )
-}
+})

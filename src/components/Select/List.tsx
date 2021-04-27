@@ -16,6 +16,7 @@ export const List = (props: any) => {
     multi,
     name,
     closeList,
+    isSubmitted,
     watch,
     setValue,
     propsOnChange,
@@ -48,6 +49,7 @@ export const List = (props: any) => {
             watch,
             setValue,
             propsOnChange,
+            isSubmitted,
           }}
           itemKey={(index: number) => filteredOptions[index].value}
           height={scrollHeight}

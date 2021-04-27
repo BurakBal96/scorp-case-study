@@ -1,9 +1,11 @@
 import React from 'react'
 import {Button, UserButton, LoginModal} from 'components'
+import {useStores} from 'utils/stores'
+import {observer} from 'mobx-react'
 
-
-export const Navigation = () => {
-  // const handleNavigate = () => null
+export const Navigation = observer(() => {
+  const {UserStore} = useStores()
+  const {token} = UserStore
 
   const handleLanguage = (language: any) => (event: any) => {
     console.log(language)
@@ -11,7 +13,7 @@ export const Navigation = () => {
 
   return (
     <div className="navigation">
-      <LoginModal />
+      {!token && <LoginModal />}
       <div className="horizon">
         <Button className="basic-btn mr-4" onClick={handleLanguage('tr-tr')}>
           TR
@@ -21,7 +23,7 @@ export const Navigation = () => {
           EN
         </Button>
       </div>
-      <UserButton />
+      {token && <UserButton />}
     </div>
   )
-}
+})
