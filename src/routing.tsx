@@ -2,7 +2,7 @@ import React, {FC} from 'react'
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import {LayoutDefault} from 'layouts'
 
-import {Landing, NoMatch} from 'pages'
+import {Landing, ContactUs, NoMatch} from 'pages'
 
 interface Props {
   component: FC
@@ -30,6 +30,7 @@ export const Routing = () => {
     <BrowserRouter>
       <Routes>
         <GuestRoute component={Landing} path="/" />
+        <GuestRoute component={ContactUs} path="/contact-us" />
 
         <GuestRoute path="*" component={NoMatch} />
       </Routes>

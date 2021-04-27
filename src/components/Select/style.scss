@@ -25,7 +25,7 @@
     cursor: pointer;
     background: var(--background);
     &.selected {
-      background: #efefef !important;
+      background: var(--dark-background) !important;
     }
     &.opened {
       border-bottom: none;
@@ -118,7 +118,7 @@
       }
 
       &:hover {
-        background-color: #898989;
+        background-color: var(--extra-dark-background);
       }
 
       &.selected {
@@ -129,7 +129,7 @@
           color: var(--primary-color);
         }
         &:hover {
-          background-color: #898989;
+          background-color: var(--extra-dark-background);
         }
       }
     }

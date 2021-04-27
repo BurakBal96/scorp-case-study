@@ -1,9 +1,32 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import {observer} from 'mobx-react'
+import {useStores} from '../../utils/stores'
 
-export const Landing = () => {
+export const Landing = observer(() => {
+  const {UIStore} =useStores()
+
+  useEffect(()=>{
+    UIStore.setCurrentPage("Home")
+  }, [UIStore])
+
   return (
     <div className="per-100 vertical center mb-40 p-20">
       <h3>Title</h3>
+
+      <p>
+        Scorp, Videolu Sözlük formatında ortaya çıkan bir sosyal medya
+        uygulamasıdır. Toplumun herhangi bir konu hakkında
+        (gündem,spor,yemek,moda vs.) fikir ve düşüncelerini beyan ettikleri 15
+        saniyelik mikro video platformudur.Bütün mobillerden indirilebilir.
+      </p>
+
+      <p>
+        Scorp is a social media application that emerged in the Videolu Sözlük
+        format. It is a 15-second micro video platform where the public express
+        their opinions and thoughts on any subject (agenda, sports, food,
+        fashion, etc.). It can be downloaded from all mobile.
+      </p>
+
       <p>
         Dictumst commodo elementum fermentum eget morbi etiam eros molestie.
         Posuere blandit interdum dapibus fames ullamcorper, purus rhoncus morbi!
@@ -155,4 +178,4 @@ export const Landing = () => {
       </p>
     </div>
   )
-}
+})

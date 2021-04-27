@@ -1,7 +1,6 @@
-import React, {FC, InputHTMLAttributes, useEffect} from 'react'
+import React, {FC, InputHTMLAttributes} from 'react'
 import {useFormContext} from 'react-hook-form'
 import {Label, Error} from 'components'
-import {getFormOptions} from 'utils/helpers'
 
 //todo auto focus
 
@@ -14,6 +13,7 @@ interface Props {
   name: string
   onlyNumbers?: boolean
   onChange?: Function
+  rows?: number
 }
 
 export const Input = ({
@@ -25,23 +25,20 @@ export const Input = ({
   name = '',
   onlyNumbers = false,
   onChange: propsOnChange,
+  rows = 1,
   ...props
 }: Props & InputHTMLAttributes<HTMLInputElement>) => {
   const {
     register,
-    formState: {errors = {}, isSubmitted},
-    setValue,
-  } = useFormContext()
-
-  useEffect(() => {
-    if (register && name) register(name)
-  }, [register, name])
+    formState: {errors = {}},
+  }: any = useFormContext()
 
   const handleChange = (e: any) => {
     const value = e?.target?.value
-    if (name) setValue(name, value, getFormOptions(isSubmitted))
     if (propsOnChange) propsOnChange(value)
   }
+
+  const _register = !!name ? register(name) : {}
 
   return (
     <div className={'input-container ' + containerClassName}>
@@ -52,12 +49,24 @@ export const Input = ({
             <span className="input-icon left">{icon}</span>
           )}
 
-          <input
-            onChange={handleChange}
-            onKeyDown={onlyNumbers ? acceptOnlyNumbers : undefined}
-            className="input per-100"
-            {...props}
-          />
+          {rows > 1 ? (
+            <textarea
+              onChange={handleChange}
+              onKeyDown={onlyNumbers ? acceptOnlyNumbers : undefined}
+              className="input per-100"
+              rows={rows}
+              {...props}
+              {..._register}
+            />
+          ) : (
+            <input
+              onChange={handleChange}
+              onKeyDown={onlyNumbers ? acceptOnlyNumbers : undefined}
+              className="input per-100"
+              {...props}
+              {..._register}
+            />
+          )}
 
           {icon && iconLocation === 'right' && (
             <span className="input-icon right">{icon}</span>

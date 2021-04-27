@@ -7,45 +7,45 @@ export const Footer = () => {
   return    <footer>
     <div className="section">
       <span className="title">Scorp App</span>
-      <Link to="/" className="text">
+      <Link to="/contact-us" className="text">
         About Us
       </Link>
-      <Link to="/" className="text">
+      <Link to="/contact-us" className="text">
         Careers
       </Link>
-      <Link to="/" className="text">
+      <Link to="/contact-us" className="text">
         Newsroom
       </Link>
-      <Link to="/" className="text">
+      <Link to="/contact-us" className="text">
         Contact
       </Link>
     </div>
 
     <div className="section">
       <span className="title">HELP</span>
-      <Link to="/" className="text">
+      <Link to="/contact-us" className="text">
         Support Hub
       </Link>
-      <Link to="/" className="text">
+      <Link to="/contact-us" className="text">
         Terms & Conditions
       </Link>
-      <Link to="/" className="text">
+      <Link to="/contact-us" className="text">
         Privacy & Cookies
       </Link>
-      <Link to="/" className="text">
+      <Link to="/contact-us" className="text">
         Returns & Refunds
       </Link>
     </div>
 
     <div className="section">
       <span className="title">Business</span>
-      <Link to="/" className="text">
+      <Link to="/contact-us" className="text">
         Business Center
       </Link>
-      <Link to="/" className="text">
+      <Link to="/contact-us" className="text">
         Developer & Publisher
       </Link>
-      <Link to="/" className="text">
+      <Link to="/contact-us" className="text">
         Marketing Partnership
       </Link>
     </div>

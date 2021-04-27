@@ -7,7 +7,7 @@ import {useOutsideAlerter} from '../../utils/helpers'
 
 export const UserButton = observer(() => {
   const {UserStore} = useStores()
-  const {logout} = UserStore
+  const {logout, userName} = UserStore
   const ref = useRef(null)
   const [open, setOpen] = useState(false)
 
@@ -15,7 +15,7 @@ export const UserButton = observer(() => {
     setTimeout(() => setOpen(!open), 100)
   }
 
-  useOutsideAlerter(ref, toggleOpen)
+  useOutsideAlerter(ref, toggleOpen, open)
 
   return (
     <>
@@ -28,7 +28,7 @@ export const UserButton = observer(() => {
         <Portal offset="br" hocRef={ref} customWidth={180}>
           <div className="options-popup">
             <div className="item">
-              <div>UserName123</div>
+              <div>{userName}</div>
             </div>
 
             <div className="item">
